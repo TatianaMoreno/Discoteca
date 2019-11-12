@@ -5,14 +5,14 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application> 
         <locale-config>
-            <default-locale>es</default-locale>
+            <default-locale> es </default-locale>
             <supported-locale>es</supported-locale>  
             <supported-locale>en</supported-locale>
             <supported-locale>fr</supported-locale>        
         </locale-config>
         
         <resource-bundle>
-            <base-name>propiedades.mensajes</base-name>
+            <base-name>idiomas.mensajes</base-name>
             <var>mensaje</var>
         </resource-bundle>
     </application>        
