@@ -18,16 +18,23 @@
     <h:body>
         <p:panel style="widt:400px; height:590px;" >
             <h:form>
-                <center><font  face="arial" size="6" color="white">Bienvenido</font></center>
-                <center><font  face="arial" size="6" color="white">a</font></center>
-                <center><font  face="arial" size="6" color="white">Disque</font></center>
-                <p:panelGrid columns="2" layout="grid" styleClass="showcase-text-align-center">
-                    <p:outputLabel value="#{mensaje.ingreseNombre} " /> 
-                    <p:outputLabel value="#{mensaje.ingreseNombre} " /> 
-                </p:panelGrid>
-                <p:outputLabel value="#{mensaje.ingreseNombre} " /> 
-                <p:inputText value=" " required="true"/>
-                <p:commandButton value="#{mensaje.botonIngresar}" />
+                <center><font  face="arial" size="8" color="white">Bienvenido</font></center>
+                <center><font  face="arial" size="8" color="white">a</font></center>
+                <center><font  face="arial" size="8" color="white">Disque</font></center>
+                <br></br>*********************************************************************************************************************<br></br>
+                <font face="arial" size="5">
+                    <p:panelGrid columns="2" layout="grid" styleClass="showcase-text-align-center">
+                        <p:outputLabel value="#{mensaje.mensajeInicioAdmin} " /> 
+
+                        <p:outputLabel value="#{mensaje.mensajeInicioUser} " />
+                        <p:commandLink style="color:cyan;">
+                            <p:outputLabel value="#{mensaje.linkInicioAdmin} " />
+                        </p:commandLink>
+                        <p:inputText value=" " required="true"/>
+                        <p:outputLabel value=" " /> 
+                        <p:commandButton value="#{mensaje.botonIngresar}" />
+                    </p:panelGrid>
+                </font>
             </h:form>
         </p:panel>
     </h:body>
