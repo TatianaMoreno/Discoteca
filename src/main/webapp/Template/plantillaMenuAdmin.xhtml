@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Menu</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="left">
+            <ui:insert name="left">
+                <div  id="menu">
+                    <h:form>
+                        <p:growl>
+                            <p:autoUpdate />
+                        </p:growl>
+                        <font  face="arial" size="2" color="white">
+                            <p:panelMenu style="width:300px">
+                                <p:submenu label="#{mensaje.canciones}">
+                                    <p:menuitem value="#{mensaje.agregarCancion}" style="color:white;"/>
+                                    <p:menuitem value="#{mensaje.editarCancion}"  style="color:white;"  />
+                                    <p:menuitem value="#{mensaje.verCanciones}"   style="color:white;" />
+                                    <p:menuitem value="#{mensaje.eliminarCancion}"   style="color:white;" />
+                                </p:submenu>
+                                <p:submenu label="#{mensaje.artistas}">
+                                    <p:menuitem value="#{mensaje.agregarArtista}"  style="color:white;"/>
+                                    <p:menuitem value="#{mensaje.editarArtista}"  style="color:white;"  />
+                                    <p:menuitem value="#{mensaje.verArtistas}"   style="color:white;" />
+                                    <p:menuitem value="#{mensaje.eliminarArtista}"  style="color:white;"  />
+                                </p:submenu>
+                                <p:submenu label="#{mensaje.cds}">
+                                    <p:menuitem value="#{mensaje.agregarCd}" style="color:white;" />
+                                    <p:menuitem value="#{mensaje.editarCd}"   style="color:white;" />
+                                    <p:menuitem value="#{mensaje.verCd}"   style="color:white;" />
+                                    <p:menuitem value="#{mensaje.eliminarCd}"  style="color:white;"  />
+                                </p:submenu>
+                                <p:submenu label="#{mensaje.cerrarSesion}" style="color:white;"/>
+                            </p:panelMenu>
+                        </font>
+                    </h:form>
+                </div>
+            </ui:insert>
+        </div>
+        <div id="content" class="left_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
