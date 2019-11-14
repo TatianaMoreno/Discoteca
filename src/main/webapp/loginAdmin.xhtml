@@ -19,11 +19,15 @@
     <h:body>
         <p:panel style="widt:400px; height:590px;" >
             <h:form>
-                <p:selectOneMenu value="#{idioma.localeCode}" onchange="submit()"
-                                 valueChangeListener="#{idioma.countryLocaleCodeChanged}">
-                    <f:selectItems value="#{idioma.countriesInMap}" />
-                </p:selectOneMenu>
-                <br></br>
+                <font  face="arial" size="4" color="white">
+                    <p:outputLabel for="@next" value="#{mensaje.idioma}" />
+                </font>
+                <font  face="arial" size="2" color="white">
+                    <p:selectOneMenu  value="#{idioma.localeCode}" onchange="submit()"
+                                      valueChangeListener="#{idioma.countryLocaleCodeChanged}">
+                        <f:selectItems value="#{idioma.countriesInMap}" />
+                    </p:selectOneMenu>
+                </font>
                 <center><font  face="arial" size="8" color="white"><p:outputLabel value="#{mensaje.tituloInicioSesion} " /> </font></center>
                 <br></br>
                 <br></br>*********************************************************************************************************************<br></br>
