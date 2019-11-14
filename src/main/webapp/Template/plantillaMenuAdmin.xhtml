@@ -19,14 +19,18 @@
             <ui:insert name="left">
                 <div  id="menu">
                     <h:form>
-                        <p:selectOneMenu value="#{idioma.localeCode}" onchange="submit()"
-                                         valueChangeListener="#{idioma.countryLocaleCodeChanged}">
-                            <f:selectItems value="#{idioma.countriesInMap}" />
-                        </p:selectOneMenu>
-                        <p:growl>
-                            <p:autoUpdate />
-                        </p:growl>
+                        <font  face="arial" size="4" color="black">
+                            <p:outputLabel for="@next" value="#{mensaje.idioma}" />
+                        </font>
                         <font  face="arial" size="2" color="white">
+                            <p:selectOneMenu  value="#{idioma.localeCode}" onchange="submit()"
+                                              valueChangeListener="#{idioma.countryLocaleCodeChanged}">
+                                <f:selectItems value="#{idioma.countriesInMap}" />
+                            </p:selectOneMenu>
+                            <p:growl>
+                                <p:autoUpdate />
+                            </p:growl>
+
                             <p:panelMenu style="width:300px">
                                 <p:submenu label="#{mensaje.canciones}">
                                     <p:menuitem value="#{mensaje.agregarCancion}" style="color:white;"/>
