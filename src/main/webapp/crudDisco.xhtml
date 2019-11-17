@@ -1,17 +1,99 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">>
+    <style type="text/css">
+        .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
+            text-align: center;
+        }
 
-    <body>
+        .customPanelGrid .ui-panelgrid-content {
+            align-items: center;
+        }
+    </style>
+    <h:body>
 
         <ui:composition template="./Template/plantillaMenuAdmin.xhtml">
 
             <ui:define name="content">
-                
+                <p:panel style="widt:10px; height:590px;" >
+                    <h:form id="form" enctype="multipart/form-data">
+                        <font  face="arial" size="4" color="white" >
+                            <center>
+                                <p:outputLabel value="#{mensaje.agregarCancion}" />
+                            </center>
+                        </font>   
+                        <font face="arial" size="3" color="white">
+                            <p:panelGrid  columns="2" layout="tabular" styleClass="showcase-text-align-center" >
+                                <p:outputLabel value="#{mensaje.nombreArtista} " />
+                                <p:inputText id="nombre" required="true"/>
+
+                                <p:outputLabel value="#{mensaje.artistaDisco}" />
+                                <p:inputText id="artista" required="true"/>
+
+                                <p:outputLabel value="#{mensaje.caratula} " />
+                                <p:growl id="msg"></p:growl>
+                                <p:fileUpload value="#{fileUploadManagedBean.file}" mode="advanced" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                              fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" update="msg"></p:fileUpload>
+                            </p:panelGrid>
+                            <br></br>
+                            <center>
+                                <p:commandButton value="#{mensaje.botonAgregar}" id="ajax" update="tablaArtistas"  
+                                                 style="margin-right:20px;" styleClass="ui-priority-primary">
+                                    <f:param name="productId" value="10" />
+                                </p:commandButton>
+                            </center>
+                            <br></br>
+                            <br></br>
+                            <p:panel id="tablaArtistas">
+                                <p:growl id="msgs" showDetail="true"/>
+                                <p:dataTable id="cars1" var="car" editable="true" style="margin-bottom:20px">
+                                    <f:facet name="header">
+                                        #{mensaje.artistas}
+                                    </f:facet>
+
+                                    <p:ajax event="rowEdit"  update=":form:msgs" />
+                                    <p:ajax event="rowEditCancel"  update=":form:msgs" />
+
+                                    <p:column headerText="#{mensaje.nombreArtista}">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText  /></f:facet>
+                                            <f:facet name="input"><p:inputText id="nombreArtista"  style="width:100%"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="#{mensaje.apellidoArtista}">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText /></f:facet>
+                                            <f:facet name="input"><p:inputText  style="width:100%" label="#{mensaje.apellidoArtista}"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="#{mensaje.fechaNacimiento}">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText  /></f:facet>
+                                            <f:facet name="input">
+                                                <p:calendar id="fechaNacimiento"  required="true"/>
+                                            </f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+                                    <p:column style="width:35px">
+                                        <p:rowEditor />
+                                    </p:column>
+                                    <p:column style="width: 70px">
+                                        <h:commandLink value="Eliminar" actionListener="#{menuCarro.eliminarCarro(lista)}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </font>
+                    </h:form>
+                </p:panel>
             </ui:define>
 
         </ui:composition>
 
-    </body>
+    </h:body>
 </html>
