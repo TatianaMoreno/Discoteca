@@ -29,30 +29,38 @@
                         <font face="arial" size="3" color="white">
                             <p:panelGrid  columns="2" layout="tabular" styleClass="showcase-text-align-center" >
                                 <p:outputLabel value="#{mensaje.nombreArtista} " />
-                                <p:inputText id="nombre" required="true"/>
+                                <p:inputText id="nombre" required="true" label="#{mensaje.nombreArtista}"/>
 
                                 <p:outputLabel value="#{mensaje.artistaDisco}" />
-                                <p:inputText id="artista" required="true"/>
+                                <p:inputText id="artista" required="true" label="#{mensaje.artistaDisco}"/>
 
                                 <p:outputLabel value="#{mensaje.caratula} " />
                                 <p:growl id="msg"></p:growl>
-                                <p:fileUpload value="#{fileUploadManagedBean.file}" mode="advanced" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                                              fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" update="msg"></p:fileUpload>
+                                <p:fileUpload value="#{fileUploadManagedBean.file}" 
+                                              mode="advanced" 
+                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                              fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" 
+                                              sizeLimit="100000" 
+                                              fileLimit="1"
+                                              required="true"
+                                              label="#{mensaje.caratula}"
+                                              update="msg">
+                                </p:fileUpload>
                             </p:panelGrid>
                             <br></br>
                             <center>
-                                <p:commandButton value="#{mensaje.botonAgregar}" id="ajax" update="tablaArtistas"  
+                                <p:commandButton value="#{mensaje.botonAgregar}" id="ajax" update="tablaDiscos"  
                                                  style="margin-right:20px;" styleClass="ui-priority-primary">
                                     <f:param name="productId" value="10" />
                                 </p:commandButton>
                             </center>
                             <br></br>
                             <br></br>
-                            <p:panel id="tablaArtistas">
+                            <p:panel id="tablaDiscos">
                                 <p:growl id="msgs" showDetail="true"/>
-                                <p:dataTable id="cars1" var="car" editable="true" style="margin-bottom:20px">
+                                <p:dataTable id="discos" var="car" editable="true" style="margin-bottom:20px">
                                     <f:facet name="header">
-                                        #{mensaje.artistas}
+                                        #{mensaje.cds}
                                     </f:facet>
 
                                     <p:ajax event="rowEdit"  update=":form:msgs" />
@@ -61,22 +69,31 @@
                                     <p:column headerText="#{mensaje.nombreArtista}">
                                         <p:cellEditor>
                                             <f:facet name="output"><h:outputText  /></f:facet>
-                                            <f:facet name="input"><p:inputText id="nombreArtista"  style="width:100%"/></f:facet>
+                                            <f:facet name="input"><p:inputText id="nombreDisco"  style="width:100%"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
 
-                                    <p:column headerText="#{mensaje.apellidoArtista}">
+                                    <p:column headerText="#{mensaje.artistaDisco}">
                                         <p:cellEditor>
                                             <f:facet name="output"><h:outputText /></f:facet>
-                                            <f:facet name="input"><p:inputText  style="width:100%" label="#{mensaje.apellidoArtista}"/></f:facet>
+                                            <f:facet name="input"><p:inputText  style="width:100%" label="#{mensaje.artistaDisco}"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
 
-                                    <p:column headerText="#{mensaje.fechaNacimiento}">
+                                    <p:column headerText="#{mensaje.caratula}">
                                         <p:cellEditor>
                                             <f:facet name="output"><h:outputText  /></f:facet>
                                             <f:facet name="input">
-                                                <p:calendar id="fechaNacimiento"  required="true"/>
+                                                <p:fileUpload value="#{fileUploadManagedBean.file}" 
+                                                              mode="advanced" 
+                                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                                              fileUploadListener="#{fileUploadManagedBean.fileUploadListener}" 
+                                                              sizeLimit="100000" 
+                                                              fileLimit="1"
+                                                              required="true"
+                                                              label="#{mensaje.caratula}"
+                                                              update="msg">
+                                                </p:fileUpload>
                                             </f:facet>
                                         </p:cellEditor>
                                     </p:column>
