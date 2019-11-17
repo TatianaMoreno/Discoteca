@@ -32,7 +32,9 @@
                                 <p:inputText id="nombre" required="true" label="#{mensaje.nombreArtista}"/>
 
                                 <p:outputLabel value="#{mensaje.artistaDisco}" />
-                                <p:inputText id="artista" required="true" label="#{mensaje.artistaDisco}"/>
+                                <p:selectOneMenu id="artista"   style="width:125px">
+                                    <f:selectItems  />
+                                </p:selectOneMenu>
 
                                 <p:outputLabel value="#{mensaje.caratula} " />
                                 <p:growl id="msg"></p:growl>
@@ -76,7 +78,11 @@
                                     <p:column headerText="#{mensaje.artistaDisco}">
                                         <p:cellEditor>
                                             <f:facet name="output"><h:outputText /></f:facet>
-                                            <f:facet name="input"><p:inputText  style="width:100%" label="#{mensaje.artistaDisco}"/></f:facet>
+                                            <f:facet name="input">
+                                                <p:selectOneMenu id="artista"   style="width:125px">
+                                                    <f:selectItems  />
+                                                </p:selectOneMenu>
+                                            </f:facet>
                                         </p:cellEditor>
                                     </p:column>
 
