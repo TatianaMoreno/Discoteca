@@ -7,19 +7,42 @@ package controlador;
 
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import logica.LogicaLogin;
 
 /**
  *
  * @author AndresChila
  */
-@Named(value = "login")
+@ManagedBean(name = "userLoginView")
 @Dependent
 public class Login {
-
+    private String username;
+    private String password;
     /**
      * Creates a new instance of Login
      */
     public Login() {
+    }
+    public String loguearse(){
+        LogicaLogin logica = new LogicaLogin(username, password);
+        logica.loguearse();
+        return logica.getRedirecciona();
+    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }
