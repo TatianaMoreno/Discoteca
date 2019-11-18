@@ -15,13 +15,13 @@ public class Disco {
     private String imagen;
     private String nombre;
     private String artista;
-    private List<Cancion> canciones;
+    
 
-    public Disco(String imagen, String nombre, String artista, List<Cancion> canciones) {
+    public Disco(String imagen, String nombre, String artista) {
         this.imagen = imagen;
         this.nombre = nombre;
         this.artista = artista;
-        this.canciones = canciones;
+        
     }
 
     public String getImagen() {
@@ -46,14 +46,5 @@ public class Disco {
 
     public void setArtista(String artista) {
         this.artista = artista;
-    }
-
-    public List<Cancion> getCanciones() {
-        return canciones;
-    }
-
-    public void setCanciones(List<Cancion> canciones) {
-        this.canciones = canciones;
-    }
-    
+    }    
 }

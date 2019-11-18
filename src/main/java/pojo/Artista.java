@@ -17,14 +17,14 @@ public class Artista {
     private String apellido;
     private Date fechana;
     private String nacionalidad;
-    private List<Disco> discos ;
+    
 
-    public Artista(String nombre, String apellido, Date fechana, String nacionalidad, List<Disco> discos) {
+    public Artista(String nombre, String apellido, Date fechana, String nacionalidad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechana = fechana;
         this.nacionalidad = nacionalidad;
-        this.discos = discos;
+        
     }
 
     public String getNombre() {
@@ -58,13 +58,4 @@ public class Artista {
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
-
-    public List<Disco> getDiscos() {
-        return discos;
-    }
-
-    public void setDiscos(List<Disco> discos) {
-        this.discos = discos;
-    }
-    
 }

@@ -5,9 +5,10 @@
  */
 package controlador;
 
-import javax.inject.Named;
+
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import logica.LogicaLogin;
 
 /**
@@ -15,6 +16,7 @@ import logica.LogicaLogin;
  * @author AndresChila
  */
 @ManagedBean(name = "userLoginView")
+@SessionScoped
 @Dependent
 public class Login {
     private String username;

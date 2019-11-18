@@ -36,7 +36,7 @@ public class LogicaLogin {
     }
     public void LecturaFichero(){
         try{
-            File archivo = new File ("/src/main/java/Archivos/admin.txt");
+            File archivo = new File ("Archivos/admin.txt");
             FileReader lector = new FileReader(archivo);
             BufferedReader br = new BufferedReader(lector);
             String linea = br.readLine();

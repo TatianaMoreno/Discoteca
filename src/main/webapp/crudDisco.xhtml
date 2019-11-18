@@ -29,11 +29,11 @@
                         <font face="arial" size="3" color="white">
                             <p:panelGrid  columns="2" layout="tabular" styleClass="showcase-text-align-center" >
                                 <p:outputLabel value="#{mensaje.nombreArtista} " />
-                                <p:inputText id="nombre" required="true" label="#{mensaje.nombreArtista}"/>
+                                <p:inputText id="nombre" required="true" value="#{crudDisco.nombre}" label="#{mensaje.nombreArtista}"/>
 
                                 <p:outputLabel value="#{mensaje.artistaDisco}" />
                                 <p:selectOneMenu id="artista"   style="width:125px">
-                                    <f:selectItems  />
+                                    <f:selectItems  value="#{crudDisco.listaArtista}"/>
                                 </p:selectOneMenu>
 
                                 <p:outputLabel value="#{mensaje.caratula} " />
@@ -52,7 +52,7 @@
                             <br></br>
                             <center>
                                 <p:commandButton value="#{mensaje.botonAgregar}" id="ajax" update="tablaDiscos"  
-                                                 style="margin-right:20px;" styleClass="ui-priority-primary">
+                                                 style="margin-right:20px;" styleClass="ui-priority-primary" actionListener="#{crudDisco.agregarDisco()}">
                                     <f:param name="productId" value="10" />
                                 </p:commandButton>
                             </center>
@@ -60,18 +60,17 @@
                             <br></br>
                             <p:panel id="tablaDiscos">
                                 <p:growl id="msgs" showDetail="true"/>
-                                <p:dataTable id="discos" var="car" editable="true" style="margin-bottom:20px">
+                                <p:dataTable id="discos" var="car" value="#{crudDisco.listaDisco}" editable="true" style="margin-bottom:20px">
                                     <f:facet name="header">
                                         #{mensaje.cds}
                                     </f:facet>
-
                                     <p:ajax event="rowEdit"  update=":form:msgs" />
                                     <p:ajax event="rowEditCancel"  update=":form:msgs" />
 
                                     <p:column headerText="#{mensaje.nombreArtista}">
                                         <p:cellEditor>
                                             <f:facet name="output"><h:outputText  /></f:facet>
-                                            <f:facet name="input"><p:inputText id="nombreDisco"  style="width:100%"/></f:facet>
+                                            <f:facet name="input"><p:inputText id="nombreDisco" value="#{car.nombre}" style="width:100%"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
 
@@ -80,7 +79,7 @@
                                             <f:facet name="output"><h:outputText /></f:facet>
                                             <f:facet name="input">
                                                 <p:selectOneMenu id="artista"   style="width:125px">
-                                                    <f:selectItems  />
+                                                    <f:selectItems  value="#{crudDisco.listaArtista}"/>
                                                 </p:selectOneMenu>
                                             </f:facet>
                                         </p:cellEditor>
@@ -107,7 +106,7 @@
                                         <p:rowEditor />
                                     </p:column>
                                     <p:column style="width: 70px">
-                                        <h:commandLink value="Eliminar" actionListener="#{menuCarro.eliminarCarro(lista)}" />
+                                        <h:commandLink value="Eliminar" actionListener="#{crudDisco.eliminarDisco(car)}" />
                                     </p:column>
                                 </p:dataTable>
                             </p:panel>
