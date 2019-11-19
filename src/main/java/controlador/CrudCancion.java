@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import pojo.Cancion;
@@ -20,14 +21,14 @@ import pojo.Disco;
  * @author AndresChila
  */
 @ManagedBean(name = "crudCancion")
-@SessionScoped
+@RequestScoped
 public class CrudCancion implements Serializable {
 
     private String nombre, duracion, disco;
     private double precio;
     private List<Cancion> listaCanciones;
     private List<Disco> listaDisco;
-    private List<String> nombreDiscos = new  ArrayList<>();
+    private List<String> nombreDiscos;
 
     /**
      * Creates a new instance of CrudCancion
@@ -47,6 +48,7 @@ public class CrudCancion implements Serializable {
             listaDisco = new ArrayList<>();
         }else{
             listaDisco = (List<Disco>) context.getExternalContext().getSessionMap().get("listaDiscos");
+            nombreDiscos = new ArrayList<>();
             for(Disco d : listaDisco){
                 nombreDiscos.add(d.getNombre());
             }

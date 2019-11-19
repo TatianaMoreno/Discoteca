@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import pojo.Artista;
@@ -21,7 +22,7 @@ import pojo.Disco;
  * @author AndresChila
  */
 @ManagedBean(name = "crudDisco")
-@SessionScoped
+@RequestScoped
 public class CrudDisco implements Serializable {
     public String caratula, nombre, artista;
     public List<Artista> listaArtista;
@@ -47,7 +48,7 @@ public class CrudDisco implements Serializable {
             listaDisco = (List<Disco>) context.getExternalContext().getSessionMap().get("listaDiscos");
         }
         for(Artista a : listaArtista){
-            nombresArtistas.add(a.getNombre()+" "+a.getApellido());
+            nombresArtistas.add(a.getNombre());
         }
     }
     public void agregarDisco(){

@@ -8,7 +8,8 @@ package controlador;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
+
 import javax.faces.context.FacesContext;
 
 
@@ -17,7 +18,7 @@ import javax.faces.context.FacesContext;
  * @author AndresChila
  */
 @ManagedBean(name = "inicio")
-@SessionScoped
+@RequestScoped
 public class inicio implements Serializable{
 
     private String nombre;
