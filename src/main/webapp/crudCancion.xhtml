@@ -35,8 +35,8 @@
                                 <p:calendar id="time" pattern="HH:mm:ss" value="#{crudCancion.duracion}" timeOnly="true" maxHour="0" />
 
                                 <p:outputLabel value="#{mensaje.discoCancion} " />
-                                <p:selectOneMenu id="disco" style="width:125px" required="true">
-                                    <f:selectItems  value="#{crudCancion.listaDisco}"/>
+                                <p:selectOneMenu id="disco" style="width:125px" value="#{crudCancion.disco}" required="true">
+                                    <f:selectItems  value="#{crudCancion.nombreDiscos}"/>
                                 </p:selectOneMenu>
 
                                 <p:outputLabel value="#{mensaje.precioCancion} " />
@@ -72,14 +72,14 @@
 
                                     <p:column headerText="#{mensaje.nombreArtista}">
                                         <p:cellEditor>
-                                            <f:facet name="output"><h:outputText  /></f:facet>
+                                            <f:facet name="output"><h:outputText value="#{car.nombre}" /></f:facet>
                                             <f:facet name="input"><p:inputText id="nombre" value="#{car.nombre}" style="width:100%"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
 
                                     <p:column headerText="#{mensaje.duracion}">
                                         <p:cellEditor>
-                                            <f:facet name="output"><h:outputText /></f:facet>
+                                            <f:facet name="output"><p:calendar pattern="HH:mm:ss" value="#{car.duracion}" timeOnly="true" disabled="true"/></f:facet>
                                             <f:facet name="input">
                                                 <p:calendar id="time" pattern="HH:mm:ss" value="#{car.duracion}" timeOnly="true" maxHour="0" />
                                             </f:facet>
@@ -88,17 +88,17 @@
 
                                     <p:column headerText="#{mensaje.discoCancion}">
                                         <p:cellEditor>
-                                            <f:facet name="output"><h:outputText  /></f:facet>
+                                            <f:facet name="output"><h:outputText value="#{car.disco}" /></f:facet>
                                             <f:facet name="input">
-                                                <p:selectOneMenu id="disco"   style="width:125px" required="true">
-                                                    <f:selectItems  value="#{crudCancion.listaDisco}"/>
+                                                <p:selectOneMenu id="disco"  value="#{crudCancion.disco}" style="width:125px" required="true">
+                                                    <f:selectItems  value="#{crudCancion.nombreDiscos}"/>
                                                 </p:selectOneMenu>
                                             </f:facet>
                                         </p:cellEditor>
                                     </p:column>
                                     <p:column headerText="#{mensaje.precioCancion}">
                                         <p:cellEditor>
-                                            <f:facet name="output"><h:outputText  /></f:facet>
+                                            <f:facet name="output"><h:outputText value="#{car.precio}" /></f:facet>
                                             <f:facet name="input">
                                                 <p:inputNumber id="precio" 
                                                                minValue="0" 

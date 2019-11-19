@@ -37,12 +37,10 @@
                         <p:outputLabel value="#{mensaje.mensajeInicioAdmin} " /> 
 
                         <p:outputLabel value="#{mensaje.mensajeInicioUser} " />
-                        <p:commandLink style="color:cyan;">
-                            <p:outputLabel value="#{mensaje.linkInicioAdmin} " />
-                        </p:commandLink>
-                        <p:inputText value=" " required="true"/>
+                        <p:commandButton style="color:cyan;" immediate="true" action="loginAdmin.xhtml" value="#{mensaje.linkInicioAdmin} "/>
+                        <p:inputText value="#{inicio.nombre}"  required="true"/>
                         <p:outputLabel value=" " /> 
-                        <p:commandButton value="#{mensaje.botonIngresar}" />
+                        <p:commandButton value="#{mensaje.botonIngresar}" action="#{inicio.iniciaSesion()}" />
                     </p:panelGrid>
                 </font>
             </h:form>

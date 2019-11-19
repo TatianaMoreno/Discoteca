@@ -5,16 +5,22 @@
  */
 package controlador;
 
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+
+import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 
 /**
  *
  * @author AndresChila
  */
-@Named(value = "inicio")
-@Dependent
-public class inicio {
+@ManagedBean(name = "inicio")
+@SessionScoped
+public class inicio implements Serializable{
+
+    private String nombre;
 
     /**
      * Creates a new instance of inicio
@@ -22,4 +28,19 @@ public class inicio {
     public inicio() {
     }
     
+
+    public String iniciaSesion() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("usuario", nombre);
+        return "vistaCompra.xhtml";
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
 }

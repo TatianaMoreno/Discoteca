@@ -5,11 +5,13 @@
  */
 package pojo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author AndresChila
  */
-public class Admin {
+public class Admin implements Serializable{
     private String usuario, clave;
 
     public Admin(String usuario, String clave) {

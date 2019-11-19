@@ -58,21 +58,21 @@
 
                                     <p:column headerText="#{mensaje.nombreArtista}">
                                         <p:cellEditor>
-                                            <f:facet name="output"><h:outputText  /></f:facet>
+                                            <f:facet name="output"><h:outputText value="#{car.nombre}" /></f:facet>
                                             <f:facet name="input"><p:inputText id="nombreArtista" value="#{car.nombre}" style="width:100%"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
 
                                     <p:column headerText="#{mensaje.apellidoArtista}">
                                         <p:cellEditor>
-                                            <f:facet name="output"><h:outputText /></f:facet>
+                                            <f:facet name="output"><h:outputText value="#{car.apellido}" /></f:facet>
                                             <f:facet name="input" ><p:inputText  style="width:100%" value="#{car.apellido}"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
 
                                     <p:column headerText="#{mensaje.fechaNacimiento}">
                                         <p:cellEditor>
-                                            <f:facet name="output"><h:outputText  /></f:facet>
+                                            <f:facet name="output"><h:outputText  value="#{car.fechana}"/></f:facet>
                                             <f:facet name="input">
                                                 <p:calendar id="fechaNacimiento" value="#{car.fechana}" required="true"/>
                                             </f:facet>

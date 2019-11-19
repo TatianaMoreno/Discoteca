@@ -7,12 +7,12 @@ package controlador;
 
 
 import java.io.Serializable;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pojo.Artista;
 import pojo.Disco;
 
@@ -26,6 +26,7 @@ public class CrudDisco implements Serializable {
     public String caratula, nombre, artista;
     public List<Artista> listaArtista;
     public List<Disco> listaDisco;
+    public List<String> nombresArtistas = new ArrayList<>();
     /**
      * Creates a new instance of CrudDisco
      */
@@ -33,15 +34,35 @@ public class CrudDisco implements Serializable {
     }
     @PostConstruct
     public void init(){
-        listaArtista = new ArrayList<>();
-        listaDisco = new ArrayList<>();
+        FacesContext context = FacesContext.getCurrentInstance();
+        if(context.getExternalContext().getSessionMap().get("listaArtista") == null){
+            listaArtista = new ArrayList<>();
+        }else{
+            listaArtista = (List<Artista>) context.getExternalContext().getSessionMap().get("listaArtista");
+        }
+        if(context.getExternalContext().getSessionMap().get("listaDiscos")==null){
+            listaDisco = new ArrayList<>();
+        }
+        else{
+            listaDisco = (List<Disco>) context.getExternalContext().getSessionMap().get("listaDiscos");
+        }
+        for(Artista a : listaArtista){
+            nombresArtistas.add(a.getNombre()+" "+a.getApellido());
+        }
     }
     public void agregarDisco(){
         Disco disc = new Disco(caratula, nombre, artista);
         listaDisco.add(disc);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("listaDiscos", this.getListaDisco());
+        caratula="";
+        nombre="";
+        artista="";
     }
     public void eliminarDisco(Disco disc){
         listaDisco.remove(disc);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("listaDiscos", this.getListaDisco());
     }
 
     public String getCaratula() {
@@ -82,6 +103,14 @@ public class CrudDisco implements Serializable {
 
     public void setListaDisco(List<Disco> listaDisco) {
         this.listaDisco = listaDisco;
+    }
+
+    public List<String> getNombresArtistas() {
+        return nombresArtistas;
+    }
+
+    public void setNombresArtistas(List<String> nombresArtistas) {
+        this.nombresArtistas = nombresArtistas;
     }
     
 }

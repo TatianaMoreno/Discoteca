@@ -5,13 +5,13 @@
  */
 package controlador;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pojo.Cancion;
 import pojo.Disco;
 
@@ -22,30 +22,54 @@ import pojo.Disco;
 @ManagedBean(name = "crudCancion")
 @SessionScoped
 public class CrudCancion implements Serializable {
-    private String nombre, duracion;
+
+    private String nombre, duracion, disco;
     private double precio;
     private List<Cancion> listaCanciones;
     private List<Disco> listaDisco;
+    private List<String> nombreDiscos = new  ArrayList<>();
+
     /**
      * Creates a new instance of CrudCancion
      */
     public CrudCancion() {
     }
+
     @PostConstruct
-    public void init(){
-        listaCanciones = new ArrayList<>();
-        listaDisco = new ArrayList<>();
-        ///////llenar listas de .txt
+    public void init() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context.getExternalContext().getSessionMap().get("listaCanciones") == null) {
+            listaCanciones = new ArrayList<>();
+        }else{
+            listaCanciones = (List<Cancion>) context.getExternalContext().getSessionMap().get("listaCanciones");
+        }
+        if(context.getExternalContext().getSessionMap().get("listaDiscos") == null){
+            listaDisco = new ArrayList<>();
+        }else{
+            listaDisco = (List<Disco>) context.getExternalContext().getSessionMap().get("listaDiscos");
+            for(Disco d : listaDisco){
+                nombreDiscos.add(d.getNombre());
+            }
+        }
     }
-    public void agregarCancion(){
-        Cancion can = new Cancion(nombre, duracion, precio);
+
+    public void agregarCancion() {
+        Cancion can = new Cancion(nombre, duracion, precio, disco);
         listaCanciones.add(can);
-        /////actualizar el TXT
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("listaCanciones", this.getListaCanciones());
+        nombre="";
+        duracion="";
+        precio=0;
+        disco="";
     }
-    public void eliminarCancion(Cancion can){
+
+    public void eliminarCancion(Cancion can) {
         listaCanciones.remove(can);
-        /// actualizar el TXT
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("listaCanciones", this.getListaCanciones());
     }
+
     public String getNombre() {
         return nombre;
     }
@@ -85,5 +109,21 @@ public class CrudCancion implements Serializable {
     public void setListaDisco(List<Disco> listaDisco) {
         this.listaDisco = listaDisco;
     }
-    
+
+    public List<String> getNombreDiscos() {
+        return nombreDiscos;
+    }
+
+    public void setNombreDiscos(List<String> nombreDiscos) {
+        this.nombreDiscos = nombreDiscos;
+    }
+
+    public String getDisco() {
+        return disco;
+    }
+
+    public void setDisco(String disco) {
+        this.disco = disco;
+    }
+
 }

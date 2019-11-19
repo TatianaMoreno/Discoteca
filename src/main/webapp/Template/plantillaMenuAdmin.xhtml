@@ -33,15 +33,17 @@
 
                             <p:panelMenu style="width:300px">
                                 <p:submenu label="#{mensaje.canciones}">
-                                    <p:menuitem value="#{mensaje.agregarCancion}" style="color:white;"/>
+                                    <p:menuitem value="#{mensaje.agregarCancion}" action="crudCancion.xhtml" style="color:white;"/>
                                 </p:submenu>
                                 <p:submenu label="#{mensaje.artistas}">
-                                    <p:menuitem value="#{mensaje.agregarArtista}"  style="color:white;"/>
+                                    <p:menuitem value="#{mensaje.agregarArtista}" action="crudArtista.xhtml" style="color:white;"/>
                                 </p:submenu>
                                 <p:submenu label="#{mensaje.cds}">
-                                    <p:menuitem value="#{mensaje.agregarCd}" style="color:white;" />
+                                    <p:menuitem value="#{mensaje.agregarCd}" action="crudDisco.xhtml" style="color:white;" />
                                 </p:submenu>
-                                <p:submenu label="#{mensaje.cerrarSesion}" style="color:white;"/>
+                                <p:submenu label="#{mensaje.cerrarSesion}"  style="color:white;">
+                                    <p:menuitem value="#{mensaje.cerrarSesion}" action="inicio.xhtml"/>
+                                </p:submenu>
                             </p:panelMenu>
                         </font>
                     </h:form>

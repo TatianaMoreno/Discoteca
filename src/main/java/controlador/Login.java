@@ -6,10 +6,14 @@
 package controlador;
 
 
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import logica.LogicaLogin;
+import pojo.Admin;
 
 /**
  *
@@ -18,13 +22,19 @@ import logica.LogicaLogin;
 @ManagedBean(name = "userLoginView")
 @SessionScoped
 @Dependent
-public class Login {
+public class Login implements Serializable{
     private String username;
     private String password;
     /**
      * Creates a new instance of Login
      */
     public Login() {
+    }
+    @PostConstruct
+    public void creaAdmin(){
+        Admin admin = new Admin("admin", "12345");
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("admin", admin);
     }
     public String loguearse(){
         LogicaLogin logica = new LogicaLogin(username, password);

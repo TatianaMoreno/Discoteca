@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.faces.context.FacesContext;
 import pojo.Admin;
 
 /**
@@ -26,15 +27,17 @@ public class LogicaLogin {
     }
     
     public void loguearse(){
-        LecturaFichero();
-        if(admin.getUsuario().equals(usuario) && admin.getClave().equals(clave)){
+        //LecturaFichero();
+        FacesContext context = FacesContext.getCurrentInstance();
+        Admin adm = (Admin) context.getExternalContext().getSessionMap().get("admin");
+        if(adm.getUsuario().equals(usuario) && adm.getClave().equals(clave)){
             this.setRedirecciona("menuAdmin.xhtml");
         }
         else{
             this.setRedirecciona("");
         }
     }
-    public void LecturaFichero(){
+    /*public void LecturaFichero(){
         try{
             File archivo = new File ("Archivos/admin.txt");
             FileReader lector = new FileReader(archivo);
@@ -52,7 +55,7 @@ public class LogicaLogin {
         catch(IOException ex){
             ex.printStackTrace();
         }
-    }
+    }*/
     public String getUsuario() {
         return usuario;
     }

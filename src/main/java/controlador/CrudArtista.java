@@ -14,6 +14,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import logica.LogicaCrudArtista;
 import pojo.Artista;
 
@@ -34,16 +35,29 @@ public class CrudArtista implements Serializable {
     }
     @PostConstruct
     public void init(){
-        lista = new ArrayList<>();
+        FacesContext context = FacesContext.getCurrentInstance();
+        if(context.getExternalContext().getSessionMap().get("listaArtista")== null){
+            lista = new ArrayList<>();
+        }else{
+            lista = (List<Artista>) context.getExternalContext().getSessionMap().get("listaArtista");
+        }
+        
     }
     public void agregaArtista(){
         Artista art = new Artista(nombre, apellido, fechana, apellido);
         lista.add(art);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("listaArtista", this.getLista());
+        nombre="";
+        apellido="";
+        fechana=null;
     }
     public void eliminarArtista(Artista art){
         LogicaCrudArtista logica = new LogicaCrudArtista(lista, art);
         logica.eliminarArtista();
         this.setLista(logica.getLista());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("listaArtista", this.getLista());
     }
     public String getApellido() {
         return apellido;
